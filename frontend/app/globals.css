@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@import 'highlight.js/styles/github.css';
 :root {
   color-scheme: light dark;
 }
@@ -79,3 +79,186 @@ button.primary {
   font-size: 12px;
   color: #6b7280;
 }
+
+/* ---------- Markdown Base ---------- */
+.markdown {
+  color: var(--md-fg, #1f2937);                 /* zinc-800 */
+  line-height: 1.7;
+  font-size: 16px;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Light/Dark tokens */
+@media (prefers-color-scheme: dark) {
+  .markdown {
+    --md-fg: #e5e7eb;                           /* zinc-200 */
+    --md-muted: #9ca3af;                        /* zinc-400 */
+    --md-border: #374151;                       /* zinc-700 */
+    --md-code-bg: #0b0b0b;                      /* near-black */
+    --md-code-bg-alt: #111827;                  /* zinc-900 */
+    --md-quote-bg: #0f172a;                     /* slate-950 */
+  }
+}
+@media (prefers-color-scheme: light) {
+  .markdown {
+    --md-muted: #6b7280;                        /* zinc-500 */
+    --md-border: #e5e7eb;                       /* zinc-200 */
+    --md-code-bg: #f8fafc;                      /* slate-50 */
+    --md-code-bg-alt: #f3f4f6;                  /* zinc-100 */
+    --md-quote-bg: #f8fafc;                     /* slate-50 */
+  }
+}
+
+/* ---------- Headings ---------- */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.25em 0 0.6em;
+}
+.markdown h1 { font-size: 1.875rem; border-bottom: 1px solid var(--md-border); padding-bottom: .3rem; }
+.markdown h2 { font-size: 1.5rem;   border-bottom: 1px solid var(--md-border); padding-bottom: .25rem; }
+.markdown h3 { font-size: 1.25rem; }
+.markdown h4 { font-size: 1.125rem; }
+.markdown h5 { font-size: 1rem; }
+.markdown h6 { font-size: .875rem; color: var(--md-muted); }
+
+/* ---------- Paragraphs & Links ---------- */
+.markdown p { margin: .5rem 0 1rem; }
+.markdown a {
+  color: #2563eb;                               /* blue-600 */
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.markdown a:hover { text-decoration-thickness: 2px; }
+
+/* ---------- Lists ---------- */
+.markdown ul, .markdown ol {
+  margin: 0 0 1rem 0;
+  padding-left: 1.25rem;
+}
+.markdown li { margin: .25rem 0; }
+.markdown li > ul,
+.markdown li > ol { margin-top: .25rem; }
+
+/* Keep "1. Title" on same line (your issue) */
+.markdown li > p { margin: 0; display: inline; }
+.markdown li > p + ul,
+.markdown li > p + ol { margin-top: .25rem; }
+
+/* Task lists */
+.markdown input[type="checkbox"] {
+  margin-right: .5rem;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+/* ---------- Code & Pre ---------- */
+.markdown code {
+  background: var(--md-code-bg);
+  padding: .15rem .35rem;
+  border-radius: .375rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: .9em;
+}
+.markdown pre {
+  background: var(--md-code-bg-alt);
+  padding: .9rem 1rem;
+  border-radius: .5rem;
+  overflow: auto;
+  border: 1px solid var(--md-border);
+  margin: .75rem 0 1rem;
+}
+.markdown pre code {
+  background: transparent;
+  padding: 0;
+  font-size: .9rem;
+}
+
+/* Optional: wrapper for copy button (if you use it) */
+.markdown .code-block { position: relative; }
+.markdown .copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  font-size: 12px; padding: 4px 8px;
+  border: 1px solid var(--md-border);
+  border-radius: 6px; background: white; cursor: pointer;
+}
+@media (prefers-color-scheme: dark) {
+  .markdown .copy-btn { background: #111827; color: #e5e7eb; }
+}
+.markdown .copy-btn:hover { filter: brightness(0.96); }
+
+/* ---------- Blockquotes ---------- */
+.markdown blockquote {
+  margin: .75rem 0 1rem;
+  padding: .5rem .9rem;
+  border-left: 4px solid var(--md-border);
+  background: var(--md-quote-bg);
+  color: var(--md-muted);
+  border-radius: .25rem;
+}
+
+/* ---------- Tables ---------- */
+.markdown table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border: 1px solid var(--md-border);
+  border-radius: .5rem;
+}
+.markdown th, .markdown td {
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--md-border);
+}
+.markdown thead th {
+  background: var(--md-code-bg);
+  text-align: left;
+  font-weight: 600;
+}
+.markdown tbody tr:last-child td { border-bottom: 0; }
+
+/* ---------- Images & Figures ---------- */
+.markdown img { max-width: 100%; height: auto; border-radius: .375rem; }
+.markdown figure { margin: 1rem 0; text-align: center; }
+.markdown figcaption { color: var(--md-muted); font-size: .9em; margin-top: .35rem; }
+
+/* ---------- HR, KBD, Details/Summary ---------- */
+.markdown hr { border: 0; border-top: 1px solid var(--md-border); margin: 1.25rem 0; }
+
+.markdown kbd {
+  background: var(--md-code-bg);
+  border: 1px solid var(--md-border);
+  border-bottom-width: 2px;
+  border-radius: .375rem;
+  padding: .1rem .3rem;
+  font-size: .85em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.markdown details {
+  border: 1px solid var(--md-border);
+  border-radius: .5rem;
+  padding: .6rem .75rem;
+  margin: .75rem 0 1rem;
+  background: var(--md-code-bg);
+}
+.markdown summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin: -.6rem -.75rem .5rem;
+  padding: .6rem .75rem;
+}
+
+/* ---------- Inline Tweaks ---------- */
+.markdown small { color: var(--md-muted); }
+.markdown sup, .markdown sub { font-size: .8em; }
+
+/* Avoid odd wrapping from legacy rules */
+.markdown { white-space: normal; }
